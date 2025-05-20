@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter
+import com.adithya.cinexperiencemovieapp.adapter.CategoryAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentMovieListBinding
-import com.google.android.material.chip.Chip
 
 class MovieListFragment : Fragment() {
 
@@ -20,6 +20,7 @@ class MovieListFragment : Fragment() {
     private val viewModel: MovieListViewModel by viewModels()
 
     private lateinit var adapter: MovieListAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -29,16 +30,19 @@ class MovieListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Movie list setup
         adapter = MovieListAdapter(emptyList())
         binding.movieListRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.movieListRecycler.adapter = adapter
 
+        // Observe movie data
         viewModel.movies.observe(viewLifecycleOwner) {
             adapter.updateData(it)
         }
 
-        viewModel.genres.observe(viewLifecycleOwner) { genreList ->
-            setupChips(genreList)
+        // Observe genres and set up category RecyclerView
+        viewModel.genres.observe(viewLifecycleOwner) { genres ->
+            setupCategoryRecyclerView(genres)
         }
 
         setupSearch()
@@ -54,20 +58,13 @@ class MovieListFragment : Fragment() {
         })
     }
 
-    private fun setupChips(categories: List<String>) {
-        val chipGroup = binding.categoryChipGroup
-        chipGroup.removeAllViews()
-
-        for (cat in categories) {
-            val chip = Chip(requireContext()).apply {
-                text = cat
-                isCheckable = true
-                setOnClickListener {
-                    viewModel.filterByGenre(cat)
-                }
-            }
-            chipGroup.addView(chip)
+    private fun setupCategoryRecyclerView(categories: List<String>) {
+        categoryAdapter = CategoryAdapter(categories) { selectedGenre ->
+            viewModel.filterByGenre(selectedGenre)
         }
+        binding.categoryRecycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRecycler.adapter = categoryAdapter
     }
 
     override fun onDestroyView() {
