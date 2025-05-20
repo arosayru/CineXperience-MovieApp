@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Search"
+            android:background="@drawable/search_box_bg"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:paddingStart="18dp"
+            android:layout_marginBottom="16dp"
+            android:enabled="false" /> <!-- Disabled if not used for search -->
+
+        <!-- Movie Poster -->
+        <ImageView
+            android:id="@+id/poster_image"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/container_bg"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Movie Title -->
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Rating -->
+        <TextView
+            android:id="@+id/rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rating_background"
+            android:textColor="#FFFFFF"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="4dp"
+            android:padding="6dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Genres RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genres_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <!-- Movie Description -->
+        <TextView
+            android:id="@+id/overview_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

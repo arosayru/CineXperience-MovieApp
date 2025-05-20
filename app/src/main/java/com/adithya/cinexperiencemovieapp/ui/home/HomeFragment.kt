@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.adapter.MovieAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentHomeBinding
+import com.adithya.cinexperiencemovieapp.model.Movie
+import com.adithya.cinexperiencemovieapp.ui.home.HomeFragmentDirections
 import com.adithya.cinexperiencemovieapp.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -19,7 +22,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,12 +44,19 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.popularMovies.observe(viewLifecycleOwner) { movies ->
-            movieAdapter = MovieAdapter(movies)
-            binding.popularRecycler.adapter = movieAdapter
+            binding.popularRecycler.adapter = MovieAdapter(movies) { selectedMovie ->
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToMovieDetailsFragment(selectedMovie)
+                findNavController().navigate(action)
+            }
         }
 
         viewModel.upcomingMovies.observe(viewLifecycleOwner) { movies ->
-            binding.upcomingRecycler.adapter = MovieAdapter(movies)
+            binding.upcomingRecycler.adapter = MovieAdapter(movies) { selectedMovie ->
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToMovieDetailsFragment(selectedMovie)
+                findNavController().navigate(action)
+            }
         }
     }
 

@@ -8,7 +8,8 @@ import com.adithya.cinexperiencemovieapp.databinding.ItemMovieListBinding
 import com.adithya.cinexperiencemovieapp.model.Movie
 
 class MovieListAdapter(
-    private var movies: List<Movie>
+    private var movies: List<Movie>,
+    private val onItemClick: (Movie) -> Unit   // Added click listener callback
 ) : RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(val binding: ItemMovieListBinding) :
@@ -27,12 +28,16 @@ class MovieListAdapter(
         with(holder.binding) {
             title.text = movie.title
             releaseDate.text = "Release Date: ${movie.release_date}"
-            //overview.text = movie.overview
             rating.text = String.format("%.1f", movie.vote_average)
 
             Glide.with(poster.context)
                 .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
                 .into(poster)
+
+            // Set click listener on the root view (item)
+            root.setOnClickListener {
+                onItemClick(movie)
+            }
         }
     }
 

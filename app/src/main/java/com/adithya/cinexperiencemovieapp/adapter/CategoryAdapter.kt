@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adithya.cinexperiencemovieapp.R
 
 class CategoryAdapter(
-    private val categories: List<String>,
+    private var categories: List<String>,
     private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -39,4 +39,10 @@ class CategoryAdapter(
     }
 
     override fun getItemCount(): Int = categories.size
+
+    // Add this method to update the categories list dynamically
+    fun updateData(newCategories: List<String>) {
+        categories = newCategories
+        notifyDataSetChanged()
+    }
 }

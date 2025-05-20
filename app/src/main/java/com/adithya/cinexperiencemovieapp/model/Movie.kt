@@ -1,5 +1,9 @@
 package com.adithya.cinexperiencemovieapp.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
     val id: Int,
     val title: String,
@@ -8,4 +12,4 @@ data class Movie(
     val release_date: String,
     val vote_average: Double,
     val genre_ids: List<Int>
-)
+) : Parcelable

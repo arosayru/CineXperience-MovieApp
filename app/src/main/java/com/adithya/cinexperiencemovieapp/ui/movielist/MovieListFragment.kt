@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter
 import com.adithya.cinexperiencemovieapp.adapter.CategoryAdapter
@@ -30,17 +31,20 @@ class MovieListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Movie list setup
-        adapter = MovieListAdapter(emptyList())
+        adapter = MovieListAdapter(emptyList()) { movie ->
+            // Use Safe Args to navigate to MovieDetailsFragment
+            val action = MovieListFragmentDirections
+                .actionMovieListFragmentToMovieDetailsFragment(movie)
+            findNavController().navigate(action)
+        }
+
         binding.movieListRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.movieListRecycler.adapter = adapter
 
-        // Observe movie data
         viewModel.movies.observe(viewLifecycleOwner) {
             adapter.updateData(it)
         }
 
-        // Observe genres and set up category RecyclerView
         viewModel.genres.observe(viewLifecycleOwner) { genres ->
             setupCategoryRecyclerView(genres)
         }

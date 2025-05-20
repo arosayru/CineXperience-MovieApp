@@ -7,7 +7,10 @@ import com.bumptech.glide.Glide
 import com.adithya.cinexperiencemovieapp.databinding.ItemMovieBinding
 import com.adithya.cinexperiencemovieapp.model.Movie
 
-class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(
+    private var movies: List<Movie>,
+    private val onItemClick: (Movie) -> Unit
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -18,11 +21,22 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
-        holder.binding.movieTitle.text = movie.title
-        Glide.with(holder.itemView.context)
-            .load("https://image.tmdb.org/t/p/w500" + movie.poster_path)
-            .into(holder.binding.moviePoster)
+        with(holder.binding) {
+            movieTitle.text = movie.title
+            Glide.with(root.context)
+                .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
+                .into(moviePoster)
+
+            root.setOnClickListener {
+                onItemClick(movie)
+            }
+        }
     }
 
     override fun getItemCount(): Int = movies.size
+
+    fun updateData(newMovies: List<Movie>) {
+        movies = newMovies
+        notifyDataSetChanged()
+    }
 }
