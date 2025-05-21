@@ -25,7 +25,7 @@
             android:textColorHint="#AAAAAA"
             android:paddingStart="18dp"
             android:layout_marginBottom="16dp"
-            android:enabled="false" /> <!-- Disabled if not used for search -->
+            android:enabled="false" />
 
         <!-- Movie Poster -->
         <ImageView
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/container_bg"
+            android:background="@drawable/bg1"
             android:layout_marginBottom="12dp" />
 
         <!-- Movie Title -->
