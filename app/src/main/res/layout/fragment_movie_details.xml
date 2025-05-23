@@ -27,56 +27,82 @@
             android:layout_marginBottom="16dp"
             android:enabled="false" />
 
-        <!-- Movie Poster -->
-        <ImageView
-            android:id="@+id/poster_image"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/bg1"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Movie Title -->
-        <TextView
-            android:id="@+id/title_text"
+        <!-- Section with Poster + Details Background -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="16dp">
 
-        <!-- Rating -->
-        <TextView
-            android:id="@+id/rating_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rating_background"
-            android:textColor="#FFFFFF"
-            android:drawableStart="@drawable/ic_star"
-            android:drawablePadding="4dp"
-            android:padding="6dp"
-            android:textSize="14sp"
-            android:layout_marginBottom="12dp" />
+            <!-- Background Image for Poster + Text Section -->
+            <ImageView
+                android:id="@+id/details_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/container_bg"
+                android:layout_gravity="top" />
 
-        <!-- Genres RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genres_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        <!-- Movie Description -->
-        <TextView
-            android:id="@+id/overview_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:lineSpacingExtra="2dp" />
+            <!-- Foreground Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="@android:color/transparent">
 
+                <!-- Movie Poster -->
+                <ImageView
+                    android:id="@+id/poster_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg1"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Movie Title -->
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Rating -->
+                <TextView
+                    android:id="@+id/rating_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rating_background"
+                    android:textColor="#FFFFFF"
+                    android:drawableStart="@drawable/ic_star"
+                    android:drawablePadding="4dp"
+                    android:padding="6dp"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Genres RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/genres_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <!-- Movie Description -->
+                <TextView
+                    android:id="@+id/overview_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="2dp" />
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
