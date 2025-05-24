@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.R
-import com.adithya.cinexperiencemovieapp.adapter.CategoryAdapter
+import com.adithya.cinexperiencemovieapp.adapter.GenreAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentMovieDetailsBinding
 import com.adithya.cinexperiencemovieapp.model.Movie
 import com.adithya.cinexperiencemovieapp.utils.GenreUtils
@@ -21,7 +21,7 @@ class MovieDetailsFragment : Fragment() {
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var genreAdapter: GenreAdapter
 
     // Use Safe Args to get the passed movie object
     private val args: MovieDetailsFragmentArgs by navArgs()
@@ -45,10 +45,7 @@ class MovieDetailsFragment : Fragment() {
 
     private fun setupSearchBar() {
         binding.searchBar.apply {
-            // Disabled for now or use if you want search here
             isEnabled = false
-
-            // Optional: Add TextWatcher if you want to implement search here
             addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -58,10 +55,10 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun setupGenresRecycler() {
-        categoryAdapter = CategoryAdapter(emptyList()) {}
+        genreAdapter = GenreAdapter(emptyList())
         binding.genresRecycler.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.genresRecycler.adapter = categoryAdapter
+        binding.genresRecycler.adapter = genreAdapter
     }
 
     private fun bindMovieDetails(movie: Movie) {
@@ -69,15 +66,13 @@ class MovieDetailsFragment : Fragment() {
         binding.ratingText.text = String.format("%.1f", movie.vote_average)
         binding.overviewText.text = movie.overview
 
-        // Load poster image
         Glide.with(this)
             .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
             .placeholder(R.drawable.ic_movies)
             .into(binding.posterImage)
 
-        // Map genre ids to genre names using GenreUtils
         val genreNames = movie.genre_ids.mapNotNull { GenreUtils.genreMap[it] }
-        categoryAdapter.updateData(genreNames)
+        genreAdapter.updateData(genreNames)
     }
 
     override fun onDestroyView() {
