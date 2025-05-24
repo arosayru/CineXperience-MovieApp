@@ -25,6 +25,6 @@
         android:theme="@style/ThemeOverlay.Material3.BottomNavigationView"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconTint="@color/white" />
+        app:itemIconTint="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
