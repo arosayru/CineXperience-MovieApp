@@ -101,6 +101,28 @@
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:lineSpacingExtra="2dp" />
+
+                <!-- Feedback Title -->
+                <TextView
+                    android:id="@+id/feedback_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Feedbacks"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Feedback RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/feedback_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

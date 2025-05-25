@@ -3,6 +3,7 @@ package com.adithya.cinexperiencemovieapp.repository
 import com.adithya.cinexperiencemovieapp.api.RetrofitClient
 import com.adithya.cinexperiencemovieapp.model.Genre
 import com.adithya.cinexperiencemovieapp.model.Movie
+import com.adithya.cinexperiencemovieapp.model.Feedback
 
 class MovieRepository {
 
@@ -19,4 +20,19 @@ class MovieRepository {
     suspend fun getUpcomingMovies(): List<Movie> {
         return RetrofitClient.api.getUpcomingMovies(apiKey).results
     }
+
+    suspend fun getFeedbacks(movieId: Int): List<Feedback> {
+        val response = RetrofitClient.api.getFeedbacks(movieId, apiKey)
+        return response.results.map {
+            Feedback(
+                id = it.id,
+                username = it.author,
+                comment = it.content
+            )
+        }
+    }
+
+
+
+
 }
