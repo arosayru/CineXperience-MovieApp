@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@drawable/container_bg"
     android:paddingStart="12dp"
     android:paddingEnd="12dp"
     android:paddingTop="8dp"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="User"
         android:textColor="#FFEB3B"
-        android:textSize="13sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:paddingBottom="4dp" />
 
