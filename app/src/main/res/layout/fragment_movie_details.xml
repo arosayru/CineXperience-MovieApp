@@ -1,130 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2"
-    android:padding="16dp"
-    android:fillViewport="true">
+    android:background="@drawable/bg2">
 
-    <LinearLayout
+    <!-- Fixed Search Bar -->
+    <EditText
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:hint="Search"
+        android:background="@drawable/search_box_bg"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#AAAAAA"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:enabled="false" />
 
-        <!-- Search Bar -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Search"
-            android:background="@drawable/search_box_bg"
-            android:drawableStart="@android:drawable/ic_menu_search"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA"
-            android:paddingStart="18dp"
-            android:layout_marginBottom="16dp"
-            android:enabled="false" />
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="82dp"
+        android:padding="16dp"
+        android:fillViewport="true">
 
-        <!-- Section with Poster + Details Background -->
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical">
 
-            <!-- Background Image for Poster + Text Section -->
-            <ImageView
-                android:id="@+id/details_background"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/container_bg"
-                android:layout_gravity="top" />
-
-            <!-- Foreground Content -->
-            <LinearLayout
+            <!-- Section with Poster + Details Background -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                android:background="@android:color/transparent">
+                android:layout_marginBottom="16dp">
 
-                <!-- Movie Poster -->
+                <!-- Background Image -->
                 <ImageView
-                    android:id="@+id/poster_image"
+                    android:id="@+id/details_background"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/bg1"
-                    android:layout_marginBottom="12dp" />
+                    android:src="@drawable/container_bg"
+                    android:layout_gravity="top" />
 
-                <!-- Movie Title -->
-                <TextView
-                    android:id="@+id/title_text"
+                <!-- Foreground Content -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp" />
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="@android:color/transparent">
 
-                <!-- Rating -->
-                <TextView
-                    android:id="@+id/rating_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rating_background"
-                    android:textColor="#FFFFFF"
-                    android:drawableStart="@drawable/ic_star"
-                    android:drawablePadding="4dp"
-                    android:padding="6dp"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="12dp" />
+                    <!-- Movie Poster -->
+                    <ImageView
+                        android:id="@+id/poster_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/bg1"
+                        android:layout_marginBottom="12dp" />
 
-                <!-- Genres RecyclerView -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/genres_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    <!-- Movie Title -->
+                    <TextView
+                        android:id="@+id/title_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
 
-                <!-- Movie Description -->
-                <TextView
-                    android:id="@+id/overview_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="2dp" />
+                    <!-- Rating -->
+                    <TextView
+                        android:id="@+id/rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rating_background"
+                        android:textColor="#FFFFFF"
+                        android:drawableStart="@drawable/ic_star"
+                        android:drawablePadding="4dp"
+                        android:padding="6dp"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp" />
 
-                <!-- Feedback Title -->
-                <TextView
-                    android:id="@+id/feedback_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Feedbacks"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="12dp" />
+                    <!-- Genres RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/genres_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                <!-- Feedback RecyclerView -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/feedback_recycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                    <!-- Movie Description -->
+                    <TextView
+                        android:id="@+id/overview_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="2dp" />
 
-</androidx.core.widget.NestedScrollView>
+                    <!-- Feedback Title -->
+                    <TextView
+                        android:id="@+id/feedback_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Feedbacks"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Feedback RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/feedback_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

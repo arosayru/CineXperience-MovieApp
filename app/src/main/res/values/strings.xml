@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">CineXperienceMovieApp</string>
     <string name="movie_poster">Movie Poster</string>
+    <string name="search_hint">Search</string>
+    <string name="feedback_title">Feedbacks</string>
 </resources>
