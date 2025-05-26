@@ -19,6 +19,9 @@ class MovieListViewModel : ViewModel() {
     private val _genres = MutableLiveData<List<String>>()
     val genres: LiveData<List<String>> = _genres
 
+    private val _isEmpty = MutableLiveData<Boolean>()
+    val isEmpty: LiveData<Boolean> = _isEmpty
+
     private val allMovies = mutableListOf<Movie>()
 
     init {
@@ -27,6 +30,7 @@ class MovieListViewModel : ViewModel() {
             allMovies.clear()
             allMovies.addAll(fetched)
             _movies.value = fetched
+            _isEmpty.value = fetched.isEmpty()
             updateGenreFilters(fetched)
         }
     }
@@ -50,17 +54,22 @@ class MovieListViewModel : ViewModel() {
             }
         }
         _movies.value = result
+        _isEmpty.value = result.isEmpty()
     }
 
     fun filterByGenre(genreName: String) {
-        if (genreName.equals("All", ignoreCase = true)) {
-            _movies.value = allMovies
-            return
+        val result = if (genreName.equals("All", ignoreCase = true)) {
+            allMovies
+        } else {
+            val genreId = GenreUtils.genreMap.entries.find { it.value.equals(genreName, ignoreCase = true) }?.key
+            if (genreId != null) {
+                allMovies.filter { it.genre_ids.contains(genreId) }
+            } else {
+                emptyList()
+            }
         }
 
-        val genreId = GenreUtils.genreMap.entries.find { it.value.equals(genreName, ignoreCase = true) }?.key
-        if (genreId != null) {
-            _movies.value = allMovies.filter { it.genre_ids.contains(genreId) }
-        }
+        _movies.value = result
+        _isEmpty.value = result.isEmpty()
     }
 }

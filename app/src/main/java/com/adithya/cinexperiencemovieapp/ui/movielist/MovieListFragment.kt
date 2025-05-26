@@ -47,8 +47,14 @@ class MovieListFragment : Fragment() {
         binding.movieListRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.movieListRecycler.adapter = adapter
 
-        viewModel.movies.observe(viewLifecycleOwner) {
-            adapter.updateData(it)
+        viewModel.movies.observe(viewLifecycleOwner) { movies ->
+            adapter.updateData(movies)
+
+            // Fix visibility toggle using container ID
+            binding.movieListRecycler.visibility =
+                if (movies.isEmpty()) View.GONE else View.VISIBLE
+            binding.emptyStateContainer.visibility =
+                if (movies.isEmpty()) View.VISIBLE else View.GONE
         }
 
         viewModel.genres.observe(viewLifecycleOwner) { genres ->
@@ -64,6 +70,7 @@ class MovieListFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.filterByQuery(s.toString())
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
     }

@@ -13,7 +13,7 @@
     android:paddingBottom="0dp"
     tools:context=".ui.movielist.MovieListFragment">
 
-    <!-- Fixed: Search Bar -->
+    <!-- Search Bar -->
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -25,9 +25,9 @@
         android:textColorHint="#AAAAAA"
         android:paddingStart="18dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp" />
 
-    <!-- Fixed: Category Title -->
+    <!-- Category Title -->
     <TextView
         android:id="@+id/popular_title"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginBottom="8dp" />
 
-    <!-- Fixed: Category RecyclerView -->
+    <!-- Category RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recycler"
         android:layout_width="match_parent"
@@ -50,9 +50,9 @@
         android:paddingEnd="4dp"
         android:paddingStart="4dp"
         android:scrollbars="none"
-        tools:listitem="@layout/item_category_chip"/>
+        tools:listitem="@layout/item_category_chip" />
 
-    <!-- Scrollable: Movie List -->
+    <!-- Movie List RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movie_list_recycler"
         android:layout_width="match_parent"
@@ -61,5 +61,16 @@
         android:overScrollMode="never"
         android:clipToPadding="false"
         android:paddingBottom="100dp"
-        android:scrollbars="none"/>
+        android:scrollbars="none" />
+
+    <!-- Empty State Container -->
+    <FrameLayout
+        android:id="@+id/empty_state_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+        <include layout="@layout/empty_state_view" />
+    </FrameLayout>
+
 </LinearLayout>
