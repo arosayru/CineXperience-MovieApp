@@ -23,7 +23,7 @@ class MovieListViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val fetched = repository.getPopularMovies() // or getMoviesFromList()
+            val fetched = repository.getPopularMovies()
             allMovies.clear()
             allMovies.addAll(fetched)
             _movies.value = fetched
@@ -33,7 +33,11 @@ class MovieListViewModel : ViewModel() {
 
     private fun updateGenreFilters(movies: List<Movie>) {
         val allGenreIds = movies.flatMap { it.genre_ids }.distinct()
-        val genreNames = allGenreIds.mapNotNull { GenreUtils.genreMap[it] }.distinct().sorted()
+        val genreNames = allGenreIds.mapNotNull { GenreUtils.genreMap[it] }
+            .distinct()
+            .sorted()
+            .toMutableList()
+        genreNames.add(0, "All") // Add "All" to the beginning
         _genres.value = genreNames
     }
 
@@ -49,6 +53,11 @@ class MovieListViewModel : ViewModel() {
     }
 
     fun filterByGenre(genreName: String) {
+        if (genreName.equals("All", ignoreCase = true)) {
+            _movies.value = allMovies
+            return
+        }
+
         val genreId = GenreUtils.genreMap.entries.find { it.value.equals(genreName, ignoreCase = true) }?.key
         if (genreId != null) {
             _movies.value = allMovies.filter { it.genre_ids.contains(genreId) }
