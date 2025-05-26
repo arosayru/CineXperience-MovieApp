@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.adithya.cinexperiencemovieapp.R
 import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter
 import com.adithya.cinexperiencemovieapp.adapter.CategoryAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentMovieListBinding
@@ -32,10 +34,14 @@ class MovieListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = MovieListAdapter(emptyList()) { movie ->
-            // Use Safe Args to navigate to MovieDetailsFragment
             val action = MovieListFragmentDirections
                 .actionMovieListFragmentToMovieDetailsFragment(movie)
-            findNavController().navigate(action)
+
+            val options = NavOptions.Builder()
+                .setPopUpTo(R.id.movieListFragment, false)
+                .build()
+
+            findNavController().navigate(action, options)
         }
 
         binding.movieListRecycler.layoutManager = LinearLayoutManager(requireContext())
