@@ -9,5 +9,11 @@ data class FeedbackResponse(
 data class FeedbackItem(
     val id: String,
     val author: String,
-    val content: String
+    val content: String,
+    val createdAt: String?,
+    val authorDetails: AuthorDetails?
+)
+
+data class AuthorDetails(
+    val rating: Double?
 )

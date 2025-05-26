@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,8 @@ class FeedbackAdapter(private var feedbackList: List<Feedback>) :
 
     inner class FeedbackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val userName: TextView = view.findViewById(R.id.user_name)
+        val feedbackDate: TextView = view.findViewById(R.id.feedback_date)
+        val feedbackRating: RatingBar = view.findViewById(R.id.feedback_rating)
         val userComment: TextView = view.findViewById(R.id.user_comment)
         val commentScroll: NestedScrollView = view.findViewById(R.id.comment_scroll)
     }
@@ -29,11 +32,13 @@ class FeedbackAdapter(private var feedbackList: List<Feedback>) :
         val feedback = feedbackList[position]
         holder.userName.text = feedback.username
         holder.userComment.text = feedback.comment
+        holder.feedbackDate.text = feedback.date
+        holder.feedbackRating.rating = feedback.rating?.toFloat() ?: 0f
 
         // Enable nested scroll
         holder.commentScroll.isNestedScrollingEnabled = true
 
-        // Fix: Let NestedScrollView handle scroll gestures inside RecyclerView
+        // Let NestedScrollView handle scroll gestures inside RecyclerView
         holder.commentScroll.setOnTouchListener { v, event ->
             v.parent.requestDisallowInterceptTouchEvent(true)
             if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
