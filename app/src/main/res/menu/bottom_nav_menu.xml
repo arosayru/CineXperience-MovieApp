@@ -9,7 +9,7 @@
         android:title=""
         android:icon="@drawable/ic_movies" />
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/aboutFragment"
         android:title=""
-        android:icon="@drawable/ic_settings" />
+        android:icon="@drawable/ic_about" />
 </menu>
