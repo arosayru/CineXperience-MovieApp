@@ -7,21 +7,22 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:layout_alignParentTop="true"
-        />
+        android:layout_alignParentTop="true" />
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/logoImage"
         android:layout_centerHorizontal="true"
-        android:indeterminate="true"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
         android:layout_marginTop="10dp"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:progressDrawable="@drawable/progress_drawable" />

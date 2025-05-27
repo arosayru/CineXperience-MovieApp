@@ -14,29 +14,14 @@
         android:padding="16dp"
         android:background="@drawable/bg2">
 
-        <!-- Search Bar -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Search"
-            android:background="@drawable/search_box_bg"
-            android:drawableStart="@android:drawable/ic_menu_search"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="12dp"
-            android:enabled="false" />
-
         <!-- Movie Poster -->
         <ImageView
             android:id="@+id/poster_image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:background="@drawable/bg1"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="12dp" />
 
         <!-- Movie Title -->
@@ -118,6 +103,26 @@
                 android:scrollbars="none"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <!-- Search Results RecyclerView for filtered movies -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_results_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="true"
+                android:overScrollMode="never"
+                android:paddingTop="16dp" />
+
+            <!-- Empty State View (initially hidden) -->
+            <FrameLayout
+                android:id="@+id/empty_state_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <include layout="@layout/empty_state_view" />
+            </FrameLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </FrameLayout>
