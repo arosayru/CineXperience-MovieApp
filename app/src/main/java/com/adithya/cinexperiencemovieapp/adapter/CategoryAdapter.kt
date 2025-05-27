@@ -40,7 +40,6 @@ class CategoryAdapter(
 
     override fun getItemCount(): Int = categories.size
 
-    // Add this method to update the categories list dynamically
     fun updateData(newCategories: List<String>) {
         categories = newCategories
         notifyDataSetChanged()
