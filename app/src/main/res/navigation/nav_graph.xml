@@ -15,7 +15,6 @@
             app:destination="@id/movieDetailsFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/movieListFragment"
         android:name="com.adithya.cinexperiencemovieapp.ui.movielist.MovieListFragment"
@@ -37,5 +36,11 @@
             android:name="movie"
             app:argType="com.adithya.cinexperiencemovieapp.model.Movie" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.adithya.cinexperiencemovieapp.ui.about.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
