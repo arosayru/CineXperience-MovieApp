@@ -30,14 +30,14 @@
             android:textColor="@android:color/darker_gray" />
 
         <TextView
+            android:id="@+id/aboutDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="CineXperience brings the magic of movies to your fingertips. Discover the latest releases, explore detailed movie information, watch trailers, and stay updated with what's trending. Whether you're a casual viewer or a cinephile, CineXperience is your go-to movie companion."
             android:textSize="20sp"
             android:lineSpacingExtra="5dp"
             android:textColor="@color/white"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
     </LinearLayout>
 </ScrollView>

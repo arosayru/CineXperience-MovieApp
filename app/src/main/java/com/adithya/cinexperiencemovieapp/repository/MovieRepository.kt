@@ -7,7 +7,7 @@ import com.adithya.cinexperiencemovieapp.model.FeedbackItem
 
 class MovieRepository {
 
-    private val apiKey = "f9923821f549f034afb399cd27e37afd"
+    private val apiKey = "28b68a20e5e4059386f514b4a898cd31"
 
     suspend fun getGenres(): List<Genre> {
         return RetrofitClient.api.getGenres(apiKey).genres
