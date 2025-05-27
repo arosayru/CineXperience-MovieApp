@@ -12,6 +12,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.R
+import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter  // <-- Use detailed adapter here
 import com.adithya.cinexperiencemovieapp.adapter.MovieAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentHomeBinding
 import com.adithya.cinexperiencemovieapp.viewmodel.HomeViewModel
@@ -22,7 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var searchAdapter: MovieAdapter
+    private lateinit var searchAdapter: MovieListAdapter  // <-- Change type here
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,7 +43,7 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         // Setup adapter for search results recycler (vertical)
-        searchAdapter = MovieAdapter(emptyList()) { selectedMovie ->
+        searchAdapter = MovieListAdapter(emptyList()) { selectedMovie ->  // <-- Use MovieListAdapter here
             val action = HomeFragmentDirections
                 .actionHomeFragmentToMovieDetailsFragment(selectedMovie)
 
@@ -101,7 +102,7 @@ class HomeFragment : Fragment() {
             val isSearching = !binding.searchBar.text.isNullOrEmpty()
 
             if (isSearching) {
-                searchAdapter.updateData(movies)
+                searchAdapter.updateData(movies)  // <-- Update detailed adapter data here
                 binding.searchResultsRecycler.visibility = View.VISIBLE
 
                 // Hide default lists when searching
