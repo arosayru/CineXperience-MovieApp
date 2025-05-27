@@ -19,27 +19,35 @@ class HomeViewModel : ViewModel() {
     private val _upcomingMovies = MutableLiveData<List<Movie>>()
     val upcomingMovies: LiveData<List<Movie>> = _upcomingMovies
 
-    // Holds full list for search filtering
-    private val fullPopularMovieList = mutableListOf<Movie>()
+    private val _filteredMovies = MutableLiveData<List<Movie>>()
+    val filteredMovies: LiveData<List<Movie>> = _filteredMovies
+
+    // Holds full combined list for search filtering
+    private val fullMovieList = mutableListOf<Movie>()
 
     init {
         viewModelScope.launch {
-            // Fetch and store all data once
             val popular = repository.getPopularMovies()
-            fullPopularMovieList.clear()
-            fullPopularMovieList.addAll(popular)
-            _popularMovies.value = popular
+            val upcoming = repository.getUpcomingMovies()
 
-            _upcomingMovies.value = repository.getUpcomingMovies()
+            // Combine both lists for search filtering
+            fullMovieList.clear()
+            fullMovieList.addAll(popular)
+            fullMovieList.addAll(upcoming)
+
+            // Initialize live data
+            _popularMovies.value = popular
+            _upcomingMovies.value = upcoming
+            _filteredMovies.value = fullMovieList // Initially show all combined movies
         }
     }
 
-    // Search/filter function
+    // Search/filter function across all movies
     fun searchMovies(query: String) {
         if (query.isEmpty()) {
-            _popularMovies.value = fullPopularMovieList
+            _filteredMovies.value = fullMovieList
         } else {
-            _popularMovies.value = fullPopularMovieList.filter {
+            _filteredMovies.value = fullMovieList.filter {
                 it.title.contains(query, ignoreCase = true)
             }
         }
