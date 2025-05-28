@@ -8,7 +8,6 @@
     android:padding="4dp"
     android:background="@android:color/transparent">
 
-    <!-- Movie Poster -->
     <ImageView
         android:id="@+id/moviePoster"
         android:layout_width="120dp"
@@ -18,7 +17,6 @@
         android:background="@drawable/poster_background"
         android:elevation="2dp" />
 
-    <!-- Movie Title -->
     <TextView
         android:id="@+id/movieTitle"
         android:layout_width="120dp"

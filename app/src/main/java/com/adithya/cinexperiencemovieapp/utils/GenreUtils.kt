@@ -12,6 +12,5 @@ object GenreUtils {
         9648 to "Mystery",
         53 to "Thriller",
         37 to "Western"
-        // Add more if needed
     )
 }

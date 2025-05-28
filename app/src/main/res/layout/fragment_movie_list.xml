@@ -13,7 +13,6 @@
     android:paddingBottom="0dp"
     tools:context=".ui.movielist.MovieListFragment">
 
-    <!-- Search Bar -->
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -27,7 +26,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="12dp" />
 
-    <!-- Category Title -->
     <TextView
         android:id="@+id/popular_title"
         android:layout_width="match_parent"
@@ -38,7 +36,6 @@
         android:layout_marginTop="18dp"
         android:layout_marginBottom="8dp" />
 
-    <!-- Category RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/category_recycler"
         android:layout_width="match_parent"
@@ -52,7 +49,6 @@
         android:scrollbars="none"
         tools:listitem="@layout/item_category_chip" />
 
-    <!-- Movie List RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movie_list_recycler"
         android:layout_width="match_parent"
@@ -63,7 +59,6 @@
         android:paddingBottom="100dp"
         android:scrollbars="none" />
 
-    <!-- Empty State Container -->
     <FrameLayout
         android:id="@+id/empty_state_container"
         android:layout_width="match_parent"

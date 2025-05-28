@@ -28,7 +28,6 @@ class CategoryAdapter(
         val category = categories[position]
         holder.categoryName.text = category
 
-        // Optional: visual feedback for selection
         holder.itemView.isSelected = position == selectedPosition
 
         holder.itemView.setOnClickListener {

@@ -12,7 +12,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adithya.cinexperiencemovieapp.R
-import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter  // <-- Use detailed adapter here
+import com.adithya.cinexperiencemovieapp.adapter.MovieListAdapter
 import com.adithya.cinexperiencemovieapp.adapter.MovieAdapter
 import com.adithya.cinexperiencemovieapp.databinding.FragmentHomeBinding
 import com.adithya.cinexperiencemovieapp.viewmodel.HomeViewModel
@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var searchAdapter: MovieListAdapter  // <-- Change type here
+    private lateinit var searchAdapter: MovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,14 +36,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerViews() {
-        // Popular and Upcoming recyclers remain horizontal for default display
         binding.popularRecycler.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.upcomingRecycler.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        // Setup adapter for search results recycler (vertical)
-        searchAdapter = MovieListAdapter(emptyList()) { selectedMovie ->  // <-- Use MovieListAdapter here
+        searchAdapter = MovieListAdapter(emptyList()) { selectedMovie ->
             val action = HomeFragmentDirections
                 .actionHomeFragmentToMovieDetailsFragment(selectedMovie)
 
@@ -59,7 +57,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        // Observe popular and upcoming for default display (only when not searching)
         viewModel.popularMovies.observe(viewLifecycleOwner) { movies ->
             if (binding.searchBar.text.isNullOrEmpty()) {
                 binding.popularRecycler.adapter = MovieAdapter(movies) { selectedMovie ->
@@ -97,26 +94,22 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Observe filteredMovies for search results
         viewModel.filteredMovies.observe(viewLifecycleOwner) { movies ->
             val isSearching = !binding.searchBar.text.isNullOrEmpty()
 
             if (isSearching) {
-                searchAdapter.updateData(movies)  // <-- Update detailed adapter data here
+                searchAdapter.updateData(movies)
                 binding.searchResultsRecycler.visibility = View.VISIBLE
 
-                // Hide default lists when searching
                 binding.popularRecycler.visibility = View.GONE
                 binding.popularTitle.visibility = View.GONE
                 binding.upcomingRecycler.visibility = View.GONE
                 binding.upcomingTitle.visibility = View.GONE
 
-                // Show empty state if no results
                 binding.emptyStateView.visibility = if (movies.isEmpty()) View.VISIBLE else View.GONE
             } else {
                 binding.searchResultsRecycler.visibility = View.GONE
                 binding.emptyStateView.visibility = View.GONE
-                // Default lists and titles are handled by popular/upcoming observers
             }
         }
     }

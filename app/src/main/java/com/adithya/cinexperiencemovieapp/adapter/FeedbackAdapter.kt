@@ -35,10 +35,8 @@ class FeedbackAdapter(private var feedbackList: List<Feedback>) :
         holder.feedbackDate.text = feedback.date
         holder.feedbackRating.rating = feedback.rating?.toFloat() ?: 0f
 
-        // Enable nested scroll
         holder.commentScroll.isNestedScrollingEnabled = true
 
-        // Let NestedScrollView handle scroll gestures inside RecyclerView
         holder.commentScroll.setOnTouchListener { v, event ->
             v.parent.requestDisallowInterceptTouchEvent(true)
             if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {

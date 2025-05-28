@@ -12,8 +12,8 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private val handler = Handler(Looper.getMainLooper())
     private var progressStatus = 0
-    private val totalDuration = 3000L  // 3 seconds
-    private val updateInterval = 50L   // update every 50 milliseconds
+    private val totalDuration = 3000L
+    private val updateInterval = 50L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,6 @@ class SplashActivity : AppCompatActivity() {
                     progressBar.progress = progressStatus
                     handler.postDelayed(this, updateInterval)
                 } else {
-                    // Progress complete, navigate to MainActivity
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

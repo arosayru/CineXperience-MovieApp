@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Search Bar -->
         <EditText
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
@@ -29,7 +28,6 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- Popular -->
         <TextView
             android:id="@+id/popular_title"
             android:layout_width="match_parent"
@@ -50,7 +48,6 @@
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never" />
 
-        <!-- Upcoming -->
         <TextView
             android:id="@+id/upcoming_title"
             android:layout_width="match_parent"
@@ -71,7 +68,6 @@
             android:nestedScrollingEnabled="true"
             android:overScrollMode="never" />
 
-        <!-- Search Results (shown only during search) -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchResultsRecycler"
             android:layout_width="match_parent"
@@ -82,7 +78,6 @@
             android:overScrollMode="never"
             android:paddingTop="16dp" />
 
-        <!-- Empty State View (initially hidden) -->
         <FrameLayout
             android:id="@+id/empty_state_view"
             android:layout_width="match_parent"

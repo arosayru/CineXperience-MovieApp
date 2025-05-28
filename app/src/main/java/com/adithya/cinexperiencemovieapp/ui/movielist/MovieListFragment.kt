@@ -50,7 +50,6 @@ class MovieListFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             adapter.updateData(movies)
 
-            // Fix visibility toggle using container ID
             binding.movieListRecycler.visibility =
                 if (movies.isEmpty()) View.GONE else View.VISIBLE
             binding.emptyStateContainer.visibility =

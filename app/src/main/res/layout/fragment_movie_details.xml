@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg2">
 
-    <!-- Fixed Header: Search Bar + Poster + Title -->
     <LinearLayout
         android:id="@+id/fixed_header"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:padding="16dp"
         android:background="@drawable/bg2">
 
-        <!-- Movie Poster -->
         <ImageView
             android:id="@+id/poster_image"
             android:layout_width="match_parent"
@@ -24,7 +22,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="12dp" />
 
-        <!-- Movie Title -->
         <TextView
             android:id="@+id/title_text"
             android:layout_width="match_parent"
@@ -35,7 +32,6 @@
             android:layout_marginBottom="8dp" />
     </LinearLayout>
 
-    <!-- Scrollable content below fixed header -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_container"
         android:layout_width="match_parent"
@@ -48,9 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="80dp"> <!-- extra space for bottom nav -->
+            android:paddingBottom="80dp">
 
-            <!-- Rating -->
             <TextView
                 android:id="@+id/rating_text"
                 android:layout_width="wrap_content"
@@ -63,7 +58,6 @@
                 android:textSize="14sp"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Genres RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/genres_recycler"
                 android:layout_width="match_parent"
@@ -73,7 +67,6 @@
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <!-- Movie Description -->
             <TextView
                 android:id="@+id/overview_text"
                 android:layout_width="match_parent"
@@ -82,7 +75,6 @@
                 android:textSize="14sp"
                 android:lineSpacingExtra="2dp" />
 
-            <!-- Feedback Title -->
             <TextView
                 android:id="@+id/feedback_title"
                 android:layout_width="match_parent"
@@ -94,7 +86,6 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Feedback RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/feedback_recycler"
                 android:layout_width="match_parent"
@@ -104,7 +95,6 @@
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <!-- Search Results RecyclerView for filtered movies -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_results_recycler"
                 android:layout_width="match_parent"
@@ -114,7 +104,6 @@
                 android:overScrollMode="never"
                 android:paddingTop="16dp" />
 
-            <!-- Empty State View (initially hidden) -->
             <FrameLayout
                 android:id="@+id/empty_state_view"
                 android:layout_width="match_parent"

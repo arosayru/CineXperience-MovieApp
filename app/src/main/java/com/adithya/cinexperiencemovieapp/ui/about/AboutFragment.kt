@@ -13,7 +13,7 @@ class AboutFragment : Fragment() {
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
 
-    private val typingSpeed: Long = 30 // milliseconds per character
+    private val typingSpeed: Long = 30
     private val descriptionText = "CineXperience brings the magic of movies to your fingertips. Discover the latest releases, explore detailed movie information, watch trailers, and stay updated with what's trending. Whether you're a casual viewer or a cinephile, CineXperience is your go-to movie companion."
 
     private var index = 0

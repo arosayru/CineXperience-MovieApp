@@ -9,7 +9,7 @@ import com.adithya.cinexperiencemovieapp.model.Movie
 
 class MovieListAdapter(
     private var movies: List<Movie>,
-    private val onItemClick: (Movie) -> Unit   // Added click listener callback
+    private val onItemClick: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(val binding: ItemMovieListBinding) :
@@ -34,7 +34,6 @@ class MovieListAdapter(
                 .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
                 .into(poster)
 
-            // Set click listener on the root view (item)
             root.setOnClickListener {
                 onItemClick(movie)
             }

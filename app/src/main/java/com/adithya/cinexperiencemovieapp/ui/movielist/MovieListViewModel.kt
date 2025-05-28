@@ -41,7 +41,7 @@ class MovieListViewModel : ViewModel() {
             .distinct()
             .sorted()
             .toMutableList()
-        genreNames.add(0, "All") // Add "All" to the beginning
+        genreNames.add(0, "All")
         _genres.value = genreNames
     }
 

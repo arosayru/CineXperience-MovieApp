@@ -3,10 +3,9 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp"/>
-            <solid android:color="#222B55"/> <!-- darker blue background -->
+            <solid android:color="#222B55"/>
         </shape>
     </item>
-    <!-- Progress fill -->
     <item android:id="@android:id/progress">
         <clip>
             <shape>
