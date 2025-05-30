@@ -14,11 +14,30 @@ class MovieRepository {
     }
 
     suspend fun getPopularMovies(): List<Movie> {
-        return RetrofitClient.api.getPopularMovies(apiKey).results
+        val allMovies = mutableListOf<Movie>()
+
+        try {
+            for (page in 1..4) {
+                val response = RetrofitClient.api.getPopularMovies(apiKey, page)
+                allMovies.addAll(response.results)
+            }
+        } catch (e: Exception) {
+
+        }
+        return allMovies
     }
 
     suspend fun getUpcomingMovies(): List<Movie> {
-        return RetrofitClient.api.getUpcomingMovies(apiKey).results
+        val allMovies = mutableListOf<Movie>()
+        try {
+            for (page in 1..4) {
+                val response = RetrofitClient.api.getUpcomingMovies(apiKey, page)
+                allMovies.addAll(response.results)
+            }
+        } catch (e: Exception) {
+
+        }
+        return allMovies
     }
 
     suspend fun getFeedbacks(movieId: Int): List<FeedbackItem> {

@@ -16,18 +16,21 @@ interface TMDBApiService {
 
     @GET("3/movie/popular")
     suspend fun getPopularMovies(
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
     ): MovieResponse
 
     @GET("3/movie/upcoming")
     suspend fun getUpcomingMovies(
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
     ): MovieResponse
 
     @GET("3/movie/{movie_id}/reviews")
     suspend fun getFeedbacks(
         @Path("movie_id") movieId: Int,
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int = 1
     ): FeedbackResponse
 
 }
